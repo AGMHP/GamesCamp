@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Manjari:100,400,700&display=swap');
+body{
+    font-family: 'Manjari', sans-serif;
+    background-color: rgb(31, 29, 29);
+}
+.submit{
+    padding-top: 10px;
+    border-radius: 0%;
+    outline: none;
+    font-size: 22px !important;
+    line-height: 1.8em;
+    color: aliceblue;
+}
+input{
+    outline: none;
+}
+input:focus{
+    border: 3px solid lightblue;
+}
+.card img{
+    width: 100%;
+    height:220px;
+}
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+.bd-example{
+    margin-top:3em;
+    font-family: 'Chilanka', cursive;
+    color:white;
+    text-shadow: 4px 4px darkblue,
+                 5px 5px red;
+    border-radius: none !important;
+    margin-bottom: 1em;
+}
+.blue{
+    color: blue;
+    text-shadow: 4px 4px lightblue,
+                 6px 6px black;
+}
+.carousel-caption h2{
+    font-size:5em;
+}
+
+@media only screen and (min-width: 920px) {
+    .carousel-item {
+        height:533px !important;
+    }
+  }
+.navbar{
+    height: 3.5em;
+    font-size: 1.2em;
+    box-shadow: 2px 2px 2px 2px black;
+}
+.navbar-brand{
+    font-size: 1.6em;
+}
+.show{
+    background-color: aliceblue;
+    padding-left: 1em;
+    width:100%;
+}
+.right{
+    float: right;
+}
+.search-input01{
+    height: 35px;
+    font-size: 14px;
+}

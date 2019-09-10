@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+    <div class="container">
+            <div class="container mb-7">
+                    <form method="POST" action="/games">
+                        <div class="row justify-content-between">
+                            <input class="col-md-4 col-sm-12" type="text" name="gameName" placeholder="Game Name" />
+                            <input type="text" class="col-md-2 col-sm-12"  name="gameType" placeholder="Game type" />
+                            <input type="url"  class="col-md-4 col-sm-12" name="gamePoster" placeholder="Game poster URL" />
+                            <button  type="submit" class="col-md-2 col-sm-12 btn btn-outline-success submit">Add New Game</button>
+                        </div>
+                    </form>            
+                </div>
+        <div class="row mt-3">
+            <% game.forEach(function(game){ %>
+                <div class="col-md-4 col-sm-6 mb-3">
+                        <div class="card" style="width: 100%;">
+                            <img src="<%= game.image %>" class="card-img-top img-thumbnail" alt="Image">
+                            <div class="card-body">
+                                <h4><%= game.title%></h4>  
+                                <p class="card-text"><%= game.type%></p>
+                                <a class="btn btn-outline-success right" href="/games/<%= game._id %>">More Info</a>
+                            </div>
+                        </div>
+                    </div>
+            <%});%>
+        </div>
+    </div>
+<% include partials/footer %>

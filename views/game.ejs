@@ -1,0 +1,18 @@
+<% include partials/header %>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6 col-sm-12 mb-3">
+                <div class="card" style="width: 100%;">
+                    <img src="<%= game.image %>" class="card-img-top img-thumbnail" alt="Image">
+                    <div class="card-body">
+                        <h4><%= game.title%></h4>  
+                        <p class="card-text"><%= game.type%></p>
+                        
+                        <p class="card-text"><%= game.desc%></p>
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </div>
+
+<% include partials/footer %>
