@@ -31,6 +31,10 @@ input:focus{
     border-radius: none !important;
     margin-bottom: 1em;
 }
+
+.big{
+    font-size: 2em;
+}
 .blue{
     color: blue;
     text-shadow: 4px 4px lightblue,
@@ -44,6 +48,10 @@ input:focus{
     .carousel-item {
         height:533px !important;
     }
+    .show{
+        padding-left: 1em;
+        width:100%;
+    }
   }
 .navbar{
     height: 3.5em;
@@ -54,9 +62,8 @@ input:focus{
     font-size: 1.6em;
 }
 .show{
-    background-color: aliceblue;
-    padding-left: 1em;
-    width:100%;
+    background-color: white;
+    padding-left: 1rem;
 }
 .right{
     float: right;
@@ -64,4 +71,10 @@ input:focus{
 .search-input01{
     height: 35px;
     font-size: 14px;
+}
+@media only screen and (max-width: 720px)
+{
+    .dropdown-item{
+        padding-left: 0 !important;
+    }
 }

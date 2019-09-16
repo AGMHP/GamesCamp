@@ -4,9 +4,9 @@
             <div class="container mb-7">
                     <form method="POST" action="/games">
                         <div class="row justify-content-between">
-                            <input class="col-md-4 col-sm-12" type="text" name="gameName" placeholder="Game Name" />
-                            <input type="text" class="col-md-2 col-sm-12"  name="gameType" placeholder="Game type" />
-                            <input type="url"  class="col-md-4 col-sm-12" name="gamePoster" placeholder="Game poster URL" />
+                            <input class="col-md-4 col-sm-12" type="text" name="game[title]" placeholder="Game Name" />
+                            <input type="text" class="col-md-2 col-sm-12"  name="game[type]" placeholder="Game type" />
+                            <input type="url"  class="col-md-4 col-sm-12" name="game[image]" placeholder="Game poster URL" />
                             <button  type="submit" class="col-md-2 col-sm-12 btn btn-outline-success submit">Add New Game</button>
                         </div>
                     </form>            

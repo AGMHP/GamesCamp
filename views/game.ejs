@@ -1,17 +1,50 @@
 <% include partials/header %>
+<style>
+.bd-example{
+    display: none;
+}
+.container{
+    margin-top: 6em;
+}
+.card img{
+    width:100% !important;
+    height: 100% !important;
+}
+.noborder{
+    border-bottom: none!important;
+}
+.comment{
+    border-radius: 0% !important;
+    border-top:none !important; 
+    background:lightgoldenrodyellow;
+}
+.ln{
+    line-height: 0.5em;
+}
+</style>        
     <div class="container">
-        <div class="row mt-3">
-            <div class="col-md-6 col-sm-12 mb-3">
-                <div class="card" style="width: 100%;">
-                    <img src="<%= game.image %>" class="card-img-top img-thumbnail" alt="Image">
+        <div class="card noborder" style="max-width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                <img src="<%= game.image %>" class="card-img" alt="<%= game.title %>">
+                </div>
+                <div class="col-md-6">
                     <div class="card-body">
-                        <h4><%= game.title%></h4>  
+                        <h5 class="card-title"><%= game.title%></h5>
                         <p class="card-text"><%= game.type%></p>
-                        
                         <p class="card-text"><%= game.desc%></p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="card noborder comment">
+                <div class="card-body">
+                  <h3 class="card-title">Reviews</h3>
+                  <p class="card-text ln"><strong>User</strong></p>
+                  <p class="card-text ln">comment</p>
+                  <a href="#" class="btn btn-primary float-right">Go somewhere</a>
+        </div>
         </div>            
     </div>
 
