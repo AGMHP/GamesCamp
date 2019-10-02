@@ -1,67 +1,43 @@
-var express=  require("express");
-var app = express();
-const bodyParser = require('body-parser');
-let mongoose = require("mongoose");
-var game = require("./models/game");
+var express         =  require("express"),
+    app             = express(),
+    bodyParser      = require('body-parser'),
+    mongoose        = require("mongoose"),
+    passport        = require("passport"),
+    passportLocal   = require("passport-local"),
+    user            = require("./models/user"),
+    method          = require("method-override");
 
-mongoose.connect("mongodb://localhost:27017/game_app",{ useNewUrlParser: true});
-app.use(express.static("public"));
+//requring routes
+var gameRoutes    = require("./routes/game"),
+    commentRoutes = require("./routes/comments"),
+    authRoutes      = require("./routes/authorization");
+
+app.use(method("_method"))
+mongoose.connect("mongodb://localhost:27017/game_app",{ useNewUrlParser: true, useFindAndModify:true});
+app.use(express.static(__dirname + "/public"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//RESTFULL Routes
-app.get('/',  (req, res) => {
-    game.find({},function(err,game){
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('home',{game:game});     
-        }
-    });
-  });
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "Aghori!",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocal(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 
-app.get('/games',  (req, res) => {
-    game.find({},function(err,game){
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('games',{game:game});     
-        }
-    });
-}); 
-
-app.post('/games',  (req, res) => {
-    console.log(req.body);
-    // var newGame = {title:req.body.gameName, type:req.body.gameType, image:req.body.gamePoster};
-    game.create(req.body.game, game.find({},function(err,game){
-         if (err) {
-             console.log(err);
-         } else {
-             console.log(game);
-            //res.render('games',{game:game}); 
-        }
-    }));
-});  
-
-app.get('/games/:id',  (req, res) => {
-        game.findById(req.params.id, function(err,game){
-            if (err) {
-                console.log(err);
-            } else {
-                res.render('game',{game:game}); 
-            }
-        });
-});  
-
-//Auth Routes
-
-app.get('/signup',  (req, res) => {
-    res.render('signup');
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+   next();
 });
 
-app.get('/login',  (req, res) => {
-    res.render('login');
-});
+app.use("/", authRoutes);
+app.use("/games", gameRoutes);
+app.use("/games/:id/comment", commentRoutes);
 
 app.listen(3003, () => {
     console.log("running at 3003");

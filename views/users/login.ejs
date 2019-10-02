@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+<style>
+    .bd-example{
+        display: none;
+    }
+    .panel{
+        margin: 9em auto !important;
+        padding: 18px;
+        max-width: 30rem;
+    }
+    .panel-title{
+        color:white;
+        text-align: center;
+    }
+    .big{
+        color:white;
+        font-size: 2em;
+    }
+    </style>
+<div class="container">
+    <div class="card card-login mx-auto text-center bg-dark panel">
+        <div class="card-header mx-auto bg-dark">
+            <span class="big">Logln</span><br/><br/>
+        </div>
+        <div class="card-body">
+            <form action="/login" method="post">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" name="username" class="form-control bg-light" placeholder="Username">
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control bg-light" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit"  value="login" class="btn btn-outline-success btn-lg"></input>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

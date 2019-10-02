@@ -3,11 +3,12 @@ passportLocal = require("passport-local-mongoose");
 
 
 var userSchema = new mongoose.Schema({
-    name: String,
+    username: String,
     contact:{
-        email:{type:String, default:"name"},
-        contact:{type:Number, default:0000000000},
+            email:{type:String, default: "NA"},
+            contact:{type:Number, default:0000000000},
     },
+    password: String,
     DOB: {type:Date, default:Date.now}
 });
 

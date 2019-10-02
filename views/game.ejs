@@ -10,16 +10,27 @@
     width:100% !important;
     height: 100% !important;
 }
-.noborder{
-    border-bottom: none!important;
+.noborder{ 
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 4px solid cyan;
 }
 .comment{
-    border-radius: 0% !important;
     border-top:none !important; 
     background:lightgoldenrodyellow;
+    border-radius:0px 0px 5px 5px;
 }
 .ln{
     line-height: 0.5em;
+}
+.ln2{
+    line-height: 0.1em;
+    font-size: 0.8em;
+    padding-top: -1em;
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i&display=swap');
+.fontType{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
 }
 </style>        
     <div class="container">
@@ -30,22 +41,45 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
+                        <a href="/games/<%=game._id%>/comment/new" class="btn btn-success float-right">Add Review</a>
                         <h5 class="card-title"><%= game.title%></h5>
                         <p class="card-text"><%= game.type%></p>
                         <p class="card-text"><%= game.desc%></p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text ln2 font-italic float-right"><%= game.launch.toDateString() %></p>
+                <p class="card-text ln">Uploaded BY <strong><%= game.author.username.toUpperCase() %></strong></p>
+                        <% if(currentUser && currentUser._id.equals(game.author.id)){%>
+                            <a class="btn btn-primary btn-sm float-right" href="/games/update/<%= game._id%>">Update Blog</a>
+                            <a class="btn btn-danger btn-sm float-right mr-3" href="/games/delete/<%= game._id%>/">Delete Blog</a>
+                        <% }%>
                     </div>
                 </div>
             </div>
         </div>
         <div class="card noborder comment">
-                <div class="card-body">
-                  <h3 class="card-title">Reviews</h3>
-                  <p class="card-text ln"><strong>User</strong></p>
-                  <p class="card-text ln">comment</p>
-                  <a href="#" class="btn btn-primary float-right">Go somewhere</a>
-        </div>
+            <div class="row p-3 justify-content-left">
+                <div class="col-6 col-md-3">
+                        <h3 class="fontType">Reviews</h3>
+                </div>
+            </div>
+            <% game.comments.forEach(function(comment){%>
+            <div class="card-body">
+                <hr>
+                <h1 class="card-title"></h1>
+                <p class="card-text ln2 font-italic float-right"><%= comment.upload.toDateString() %></p>
+                <p class="card-text ln"><strong><%= comment.author.username %></strong></p>
+                <% if(currentUser && currentUser._id.equals(comment.author.id)){%>
+                <a class="btn btn-primary btn-sm float-right" href="/games/<%= game._id%>/comment/update/<%= comment._id %>">Update Review</a>
+                <a class="btn btn-danger btn-sm float-right mr-3" href="/games/<%= game._id%>/comment/<%= comment._id %>">Delete Review</a>
+                <% }%>
+                <p class="card-text ln"><%= comment.review %></p>
+            </div>
+            <%});%>
         </div>            
     </div>
+<style>
+h1 {
+    font-weight: bolder;
 
+}
+</style>
 <% include partials/footer %>

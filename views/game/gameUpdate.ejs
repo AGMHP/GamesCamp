@@ -1,0 +1,65 @@
+<% include ../partials/header %>
+<style>
+label{
+    color:black;
+    font-size:1.4em;
+}
+.box{
+    margin: 7em auto;
+}
+.exampleFormControlInput123:focus, .suggestions{
+    display: block;
+    position: relative;
+}
+input:focus,
+textarea:focus{
+    outline: none;
+    box-shadow: none !important;
+    border:3px solid;
+    border-radius: 10px;
+}
+.cen{
+    text-align: center !important;
+    float:center;
+}
+</style>
+<div class="container box">
+    <form action="/games/update/<%= game._id%>" method="POST" class="panel">
+        <div class="container bg-light p-3">
+            <h1 class="text-center">Adding Game Blog</h1>
+            <div class="row p-3">
+                <div class="form-group col-md-6">
+                        <label for="exampleFormControlInput1"> Title </label>
+                        <input type="text" class="form-control" name="gameUpdate[title]" value= "<%= game.title%>"id="exampleFormControlInput1" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="exampleFormControlInput1"> Type </label>
+                    <input type="text" list="suggestions" class="form-control" name="gameUpdate[type]" value= "<%= game.type%>" id="exampleFormControlInput123" required>
+                    <datalist id="suggestions">
+                        <option value="Action">
+                        <option value="Sci-Fi">
+                        <option value="Adventure">
+                        <option value="Racing">
+                        <option value="Shooting">
+                    </datalist>
+                </div>
+                <div class="form-group col-md-3">
+                        <label for="exampleFormControlInput1"> Released On:</label>
+                        <input type="date" class="form-control" name="gameUpdate[launch]" value= "<%= game.launch %>" id="exampleFormControlInput1" required>
+                    </div>
+                <div class="form-group col-md-12">
+                        <label for="exampleFormControlInput1"> Thumbnail:</label>
+                        <input type="url" class="form-control" name="gameUpdate[image]" value= "<%= game.image%>" placeholder="Picture [Image url]" id="exampleFormControlInput1" required>
+                </div>    
+                <div class="form-group col-md-12">
+                    <label for="exampleFormControlTextarea">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="gameUpdate[desc]" rows="6" required><%= game.desc%>"</textarea>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="form-group col-8 col-md-3 btn btn-primary btn-lg m-sm-3">Publish</button>
+            </div>            
+        </div>
+    </form>
+</div>
+<% include ../partials/footer %>
